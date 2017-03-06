@@ -14,16 +14,16 @@ Level::Level(SDL_Renderer *renderer, int &scroll):
   scroll(scroll)
 {
   auto i = 0;
-  addLine(data[i++], "                                                                                             ");
-  addLine(data[i++], "                                                                                             ");
-  addLine(data[i++], "                                                                                             ");
-  addLine(data[i++], "                       $$                                                                    ");
-  addLine(data[i++], "                       $$                                                                    ");
-  addLine(data[i++], "                     ======                                                                  ");
-  addLine(data[i++], "                  ===  $ $ =                    $$$$$              $$$$$$                    ");
-  addLine(data[i++], "               ===     $ $ =          ===       $$$$$              $$$$$$                    ");
-  addLine(data[i++], "            ===     ========       ===       $                           ===                 ");
-  addLine(data[i++], "         $         =       ========          $           ==            =       $             ");
+  addLine(data[i++], "=============================================================================================");
+  addLine(data[i++], "=                                                                                           =");
+  addLine(data[i++], "=                                                                                           =");
+  addLine(data[i++], "=                      $$                                                                   =");
+  addLine(data[i++], "=                      $$                                                                   =");
+  addLine(data[i++], "=                    ======                                                                 =");
+  addLine(data[i++], "=                 ===  $ $ =                    $$$$$              $$$$$$                   =");
+  addLine(data[i++], "=              ===     $ $ =          ===       $$$$$              $$$$$$                   =");
+  addLine(data[i++], "=           ===     ========       ===       $                           ===                =");
+  addLine(data[i++], "=        $         =       ========          $           ==            =       $            =");
   addLine(data[i++], "=============================================================================================");
 }
 
@@ -65,6 +65,24 @@ bool Level::isInAir(int x, int y)
   auto yy = (y + 128) / 64;
   return data[yy][x1] != '=' && data[yy][x2] != '=';
 }
+
+void Level::correctXY(int &x, float &y)
+{
+  auto xx = x / 64;
+  auto yy = static_cast<int>(y) / 64;
+  if (data[yy][xx] == '=')
+    x = (xx + 1) * 64;
+  ++yy;
+  if (data[yy][xx] == '=')
+    x = (xx + 1) * 64;
+  ++xx;
+  if (data[yy][xx] == '=')
+    x = (xx - 1) * 64;
+  --yy;
+  if (data[yy][xx] == '=')
+    x = (xx - 1) * 64;
+}
+
 
 void Level::checkCoin(int x, int y)
 {

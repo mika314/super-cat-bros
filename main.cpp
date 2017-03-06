@@ -5,7 +5,7 @@
 #include "sdl_check.hpp"
 #include <SDL.h>
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **/*argv*/)
 {
   auto res = SDL_Init(SDL_INIT_EVERYTHING);
   SDL_CHECK(res == 0, "SDL_Init");
@@ -70,6 +70,7 @@ int main(int argc, char **argv)
       cat.tick(keys);
       cat.inAir = level.isInAir(cat.x, cat.y);
       level.checkCoin(cat.x, cat.y);
+      level.correctXY(cat.x, cat.y);
     }
     SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0xff, 0xff);
     SDL_RenderClear(renderer);

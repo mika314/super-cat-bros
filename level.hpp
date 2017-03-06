@@ -10,6 +10,7 @@ public:
   ~Level();
   void draw();
   bool isInAir(int x, int y);
+  void correctXY(int &x, float &y);
   void checkCoin(int x, int y);
 private:
   SDL_Renderer *renderer;
