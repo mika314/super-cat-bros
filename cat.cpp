@@ -15,7 +15,7 @@ Cat::~Cat()
 void Cat::draw()
 {
   SDL_Rect src;
-  src.x = (SDL_GetTicks() / (1000 / 12) % 8) * 64;
+  src.x = (SDL_GetTicks() / (1000 / 12) % 10) * 64;
   src.y = 0;
   src.w = 64;
   src.h = 128;
@@ -31,7 +31,7 @@ void Cat::draw()
                    directionForward ? SDL_FLIP_NONE : SDL_FLIP_HORIZONTAL);
 }
 
-void Cat::tick(unsigned keys)
+void Cat::tick(unsigned keys
 {
   if (keys & KeyLeft)
   {
